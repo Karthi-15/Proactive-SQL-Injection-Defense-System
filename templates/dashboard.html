@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Secure Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: blue; }
+        .container { max-width: 600px; margin: auto; text-align: center; }
+        .button { display: inline-block; padding: 10px 20px; margin: 10px; border-radius: 5px; color: white; text-decoration: none; }
+        .search { background-color: green; }
+        .profile { background-color: orange; }
+        .admin { background-color: red; }
+        .logout { background-color: black; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome, {{ user }}</h2>
+
+        <nav>
+            <a class="button search" href="/search">🔎 Search Database</a>
+            <a class="button profile" href="/profile">👤 Profile</a>
+            
+            {% if user == "admin" %}
+                <a class="button admin" href="/admin">⚙ Admin Panel</a>
+                <a class="button admin" href="/blocked_ips">🚫 Blocked IPs</a>
+            {% endif %}
+            
+            <a class="button logout" href="/logout">🚪 Logout</a>
+        </nav>
+    </div>
+
+</body>
+</html>
