@@ -12,6 +12,8 @@ def setup_database():
         password TEXT NOT NULL
     );
     """)
+    cursor.execute("INSERT INTO users (username, password) VALUES ('admin', 'password123');")
+    cursor.execute("INSERT INTO users (username, password) VALUES ('test_user', 'testpass');")
 
     
     cursor.execute("""
