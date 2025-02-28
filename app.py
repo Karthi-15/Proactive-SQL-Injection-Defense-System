@@ -156,10 +156,13 @@ from flask import Flask, render_template, request, redirect, session
 import sqlite3
 from python_firewall import firewall_check, enforce_firewall
 from auto_retrain import retrain_model
+from database_setup import setup_database
 
 app = Flask(__name__, template_folder="templates")
 app.secret_key = "supersecretkey"
 
+# ✅ Ensure database is created before running the app
+setup_database()
 
 def get_db_connection():
     conn = sqlite3.connect("/tmp/test.db")
