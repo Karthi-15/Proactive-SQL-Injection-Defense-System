@@ -1,7 +1,7 @@
 import sqlite3
 
 def setup_database():
-    conn = sqlite3.connect("test.db")
+    conn = sqlite3.connect("/tmp/test.db")
     cursor = conn.cursor()
 
     
