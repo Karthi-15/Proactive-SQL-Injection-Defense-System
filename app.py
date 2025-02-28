@@ -162,7 +162,7 @@ app.secret_key = "supersecretkey"
 
 
 def get_db_connection():
-    conn = sqlite3.connect("/var/lib/sqlite/test.db")
+    conn = sqlite3.connect("/tmp/test.db")
     conn.row_factory = sqlite3.Row
     return conn
 
