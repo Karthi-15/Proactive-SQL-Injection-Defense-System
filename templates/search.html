@@ -1,0 +1,264 @@
+    <!-- <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Search - Secure Web App</title>
+    </head>
+    <body>
+        <h2>Search Database</h2>
+        <form method="POST" action="/search">
+            <input type="text" name="query" placeholder="Enter search query" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if blocked_query %}
+            <p style="color: red;">❌ SQL Injection Detected! Your query "{{ blocked_query }}" was blocked.</p>
+        {% endif %}
+
+        {% if results is not none and results|length > 0 %}
+            <h3>Results:</h3>
+            <table border="1">
+                <tr>
+                    {% for key in results[0].keys() %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+                {% for row in results %}
+                <tr>
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% elif results is not none %}
+            <p>No results found.</p>
+        {% endif %}
+    </body>
+    </html> -->
+
+<!--    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Employees - SQL Injection Defense</title>
+        <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            form { margin-bottom: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid black; padding: 10px; text-align: left; }
+            th { background-color: #333; color: white; }
+            .error { color: red; font-weight: bold; }
+            .success { color: green; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+    
+        <h2>🔎 Search Employees</h2>
+    
+        <form method="post">
+            <label for="query">Enter SQL Query:</label>
+            <input type="text" id="query" name="query" required>
+            <button type="submit">Search</button>
+        </form>
+    
+        {% if blocked_query %}
+            <p class="error">🚫 SQL Injection Detected! Your query "{{ blocked_query }}" was blocked.</p>
+        {% endif %}
+    
+        {% if results %}
+            <h3>✅ Results Found:</h3>
+            <table>
+                <tr>
+                    
+                    {% for column in results[0].keys() %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+                {% for row in results %}
+                <tr>
+                    
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% elif results == [] %}
+            <p class="error">⚠ No results found!</p>
+        {% endif %}
+    
+        <br>
+        <a href="/dashboard">🔙 Back to Dashboard</a>
+    </body>
+    </html> -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Employees - SQL Injection Defense</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+    
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background-color: #f4f4f4;
+                padding: 20px;
+            }
+    
+            .container {
+                background: white;
+                padding: 25px;
+                border-radius: 8px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                width: 100%;
+                max-width: 600px;
+            }
+    
+            h2 {
+                color: #333;
+                margin-bottom: 15px;
+            }
+    
+            .error, .success {
+                font-weight: bold;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+    
+            .error {
+                color: #b30000;
+                background-color: #ffdada;
+                border: 1px solid #b30000;
+            }
+    
+            .success {
+                color: #007BFF;
+                background-color: #e6f7ff;
+                border: 1px solid #007BFF;
+            }
+    
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+    
+            button {
+                width: 100%;
+                padding: 12px;
+                background-color: #007BFF;
+                border: none;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background 0.3s;
+            }
+    
+            button:hover {
+                background-color: #0056b3;
+            }
+    
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+    
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+    
+            th {
+                background-color: #333;
+                color: white;
+            }
+    
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+    
+            tr:hover {
+                background-color: #e0e0e0;
+            }
+    
+            .back-link {
+                display: inline-block;
+                margin-top: 20px;
+                text-decoration: none;
+                color: #007BFF;
+                font-weight: bold;
+            }
+    
+            .back-link:hover {
+                text-decoration: underline;
+            }
+    
+        </style>
+    </head>
+    <body>
+    
+        <div class="container">
+            <h2>🔎 Search Employees</h2>
+    
+            <form method="post">
+                <label for="query"><b>Enter SQL Query:</b></label>
+                <input type="text" id="query" name="query" required>
+                <button type="submit">Search</button>
+            </form>
+    
+            {% if blocked_query %}
+                <p class="error">🚫 SQL Injection Detected! Your query "{{ blocked_query }}" was blocked.</p>
+            {% endif %}
+    
+            {% if results %}
+                <h3 class="success">✅ Results Found:</h3>
+                <table>
+                    <tr>
+                        {% for column in results[0].keys() %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in results %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% elif results == [] %}
+                <p class="error">⚠ No results found!</p>
+            {% endif %}
+    
+            <a href="/dashboard" class="back-link">🔙 Back to Dashboard</a>
+        </div>
+    
+    </body>
+    </html>
+    

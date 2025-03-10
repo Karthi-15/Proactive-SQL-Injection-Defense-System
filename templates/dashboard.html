@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Secure Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; font-weight: bold; color: blue; }
+        .container { max-width: 600px; margin: auto; text-align: center; }
+        .button { display: inline-block; padding: 10px 20px; margin: 10px; border-radius: 5px; color: white; text-decoration: none; }
+        .search { background-color: green; }
+        .profile { background-color: orange; }
+        .admin { background-color: red; }
+        .logout { background-color: black; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome, {{ user }}</h2>
+
+        <nav>
+            <a class="button search" href="/search">🔎 Search Database</a>
+            <a class="button profile" href="/profile">👤 Profile</a>
+            
+            {% if user == "admin" %}
+                <a class="button admin" href="/admin">⚙ Admin Panel</a>
+                <a class="button admin" href="/blocked_ips">🚫 Blocked IPs</a>
+            {% endif %}
+            
+            <a class="button logout" href="/logout">🚪 Logout</a>
+        </nav>
+    </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Secure Web App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-block;
+            width: 100%;
+            max-width: 250px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .search { background-color: #28a745; }  /* Green */
+        .search:hover { background-color: #218838; }
+
+        .profile { background-color: #ff9800; }  /* Orange */
+        .profile:hover { background-color: #e68900; }
+
+        .admin { background-color: #dc3545; }  /* Red */
+        .admin:hover { background-color: #c82333; }
+
+        .logout { background-color: #343a40; }  /* Dark Grey */
+        .logout:hover { background-color: #23272b; }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h2>👋 Welcome, {{ user }}</h2>
+
+        <div class="button-container">
+            <a class="button search" href="/search">🔎 Search Database</a>
+            <a class="button profile" href="/profile">👤 Profile</a>
+
+            {% if user == "admin" %}
+                <a class="button admin" href="/admin">⚙ Admin Panel</a>
+                <a class="button admin" href="/blocked_ips">🚫 Blocked IPs</a>
+            {% endif %}
+
+            <a class="button logout" href="/logout">🚪 Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>
