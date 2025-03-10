@@ -156,16 +156,13 @@ from flask import Flask, render_template, request, redirect, session
 import sqlite3
 from python_firewall import firewall_check, enforce_firewall
 from auto_retrain import retrain_model
-from database_setup import setup_database
 
 app = Flask(__name__, template_folder="templates")
 app.secret_key = "supersecretkey"
 
-# ✅ Ensure database is created before running the app
-setup_database()
 
 def get_db_connection():
-    conn = sqlite3.connect("/tmp/test.db")
+    conn = sqlite3.connect("test.db")
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -319,5 +316,5 @@ def logout():
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000, debug=False)
-
+    app.run(debug=True)
+    
