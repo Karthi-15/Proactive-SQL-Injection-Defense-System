@@ -1,7 +1,7 @@
 import sqlite3
 
 def setup_database():
-    conn = sqlite3.connect("/tmp/test.db")
+    conn = sqlite3.connect("test.db")
     cursor = conn.cursor()
 
     
@@ -12,8 +12,6 @@ def setup_database():
         password TEXT NOT NULL
     );
     """)
-    cursor.execute("INSERT INTO users (username, password) VALUES ('admin', 'password123');")
-    cursor.execute("INSERT INTO users (username, password) VALUES ('test_user', 'testpass');")
 
     
     cursor.execute("""
@@ -56,3 +54,4 @@ def setup_database():
 
 if __name__ == "__main__":
     setup_database()
+
